@@ -6,27 +6,38 @@
 /*   By: olabrecq <olabrecq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 09:09:00 by olabrecq          #+#    #+#             */
-/*   Updated: 2021/08/02 14:06:37 by olabrecq         ###   ########.fr       */
+/*   Updated: 2021/08/04 12:58:55 by olabrecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../includes/minitalk.h"
 
-void	send_char_to_bit(int pid, unsigned char ch)
+void	send_char_to_bit(pid_t pid, char ch)
 {
-	unsigned int bit;
+	int bit;
 
-	bit = 8;
-	while (bit != 0)
+	bit = 0;
+	while (bit < 8)
 	{
 		if (ch & (1 << bit))
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		bit >>= 1;
-		usleep(25);
+		bit++;
+		usleep(100);
 	}
-} 
+}
+
+void 	send_string(pid_t pid, char *string)
+{
+	while (*string)
+	{
+		send_char_to_bit(pid, *string);
+		string++;
+	}
+	send_char_to_bit(pid, '\0');
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -35,9 +46,11 @@ int main(int argc, char *argv[])
     
     if (argc == 3)
     {
-        string = argv[2];
-        string_sent(pid, string);      
+		pid = ft_atoi(argv[1]);
+		string = argv[2];
+		send_string(pid, string);
     }
     else
         ft_putstr("Error");
+	return (0);
 }
