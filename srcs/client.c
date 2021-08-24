@@ -6,7 +6,7 @@
 /*   By: olabrecq <olabrecq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/27 09:09:00 by olabrecq          #+#    #+#             */
-/*   Updated: 2021/08/04 12:58:55 by olabrecq         ###   ########.fr       */
+/*   Updated: 2021/08/24 14:19:59 by olabrecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	send_char_to_bit(pid_t pid, char ch)
 {
-	int bit;
+	int	bit;
 
 	bit = 0;
 	while (bit < 8)
@@ -28,7 +28,7 @@ void	send_char_to_bit(pid_t pid, char ch)
 	}
 }
 
-void 	send_string(pid_t pid, char *string)
+void	send_string(pid_t pid, char *string)
 {
 	while (*string)
 	{
@@ -38,19 +38,18 @@ void 	send_string(pid_t pid, char *string)
 	send_char_to_bit(pid, '\0');
 }
 
-
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-    char *string;
-    pid_t pid;
-    
-    if (argc == 3)
-    {
+	char	*string;
+	pid_t	pid;
+
+	if (argc == 3)
+	{
 		pid = ft_atoi(argv[1]);
 		string = argv[2];
 		send_string(pid, string);
-    }
-    else
-        ft_putstr("Error\n");
+	}
+	else
+		ft_putstr("Error\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: olabrecq <olabrecq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:20:24 by olabrecq          #+#    #+#             */
-/*   Updated: 2021/08/04 12:25:01 by olabrecq         ###   ########.fr       */
+/*   Updated: 2021/08/24 14:22:26 by olabrecq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,31 +49,31 @@ int	ft_atoi(const char *str)
 	return ((long)(sign * num));
 }
 
-void    ft_putchar(char c)
+void	ft_putchar(char c)
 {
-    write(1, &c, 1);
+	write(1, &c, 1);
 }
 
-void    ft_putstr(char *str)
+void	ft_putstr(char *str)
 {
-    write(1, &*str, ft_strlen(str));
+	write(1, &*str, ft_strlen(str));
 }
 
-void       ft_putnbr(int nb)
+void	ft_putnbr(int nb)
 {
-    unsigned int nombre;
+	unsigned int	nombre;
 
-    if (nb < 0)
-    {
-        ft_putchar('-');
-        nombre = -nb;
-    }
-    else
-        nombre = nb;
-    if (nombre > 9)
-    {
-        ft_putnbr(nombre / 10);
-        nombre %= 10;
-    }
-    ft_putchar(nombre + '0');
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nombre = -nb;
+	}
+	else
+		nombre = nb;
+	if (nombre > 9)
+	{
+		ft_putnbr(nombre / 10);
+		nombre %= 10;
+	}
+	ft_putchar(nombre + '0');
 }
