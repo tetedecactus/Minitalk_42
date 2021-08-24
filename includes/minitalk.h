@@ -19,9 +19,7 @@
 #include <signal.h>
 
 size_t	ft_strlen(const char *str);
-
-int	ft_atoi(const char *str);
-
+int	    ft_atoi(const char *str);
 void    ft_putchar(char c);
 void    ft_putstr(char *str);
 void    ft_putnbr(int nb);

@@ -51,6 +51,6 @@ int main(int argc, char *argv[])
 		send_string(pid, string);
     }
     else
-        ft_putstr("Error");
+        ft_putstr("Error\n");
 	return (0);
 }
